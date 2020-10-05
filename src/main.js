@@ -5,6 +5,7 @@ import Toast from "vue-toastification";
 // Import the CSS or use your own!
 import "vue-toastification/dist/index.css";
 
+
 Vue.config.productionTip = false;
 Vue.use(Toast, {
   transition: "Vue-Toastification__fade",
