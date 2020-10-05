@@ -47,7 +47,7 @@ export default {
         reconnect: true
       },
       
-      channels: ["ioshinigami"]
+      channels: ["thiswaifu"]
     });
 
     client.connect();
