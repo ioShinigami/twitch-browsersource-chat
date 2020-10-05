@@ -12,7 +12,6 @@ export default {
     allHandlers: [],
     source: "",
     timeout: 30000,
-    selling: "",
     title: "",
     body: "",
     combined: ""
