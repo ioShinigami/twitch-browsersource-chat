@@ -1,16 +1,34 @@
 @import url('https://fonts.googleapis.com/css?family=Cuprum&display=swap');
+        
 #app
     background: !important transparent
-    overflow hidden
-.Vue-Toastification__toast--default.my-custom-toast-class    
-    overflow hidden
-    background: rgba(43, 56, 86, 0.767);
-    color: #FFF
-    font-family: Cuprum 
-    font-weight: 400
-    font-size: 24px
-    width 150px
-.Vue-Toastification__toast-body.custom-class-1 
-    overflow hidden
-    width 150px
-    font-size: 16px;
+    overflow: hidden
+.app 
+    overflow: hidden
+@keyframes jackInTheBox {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(.1) rotate(30deg);
+        transform: scale(.1) rotate(30deg);
+        -webkit-transform-origin: center bottom;
+        transform-origin: center bottom
+    }
+    50% {
+        -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    70% {
+        -webkit-transform: rotate(3deg);
+        transform: rotate(3deg)
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+}
+
+.jackInTheBox {
+    -webkit-animation-name: jackInTheBox;
+    animation-name: jackInTheBox
+}

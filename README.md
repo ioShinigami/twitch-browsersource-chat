@@ -1,4 +1,4 @@
-# twitchchatsource
+# twitchchat
 
 ## Project setup
 ```
