@@ -57,7 +57,7 @@ export default {
     var max = Math.floor(this.allHandlers.length)
     var min = Math.ceil(1)
     var newRandomMath = Math.floor(Math.random() * (max - min) + min);
-       console.log("randomImageMath", newRandomMath)
+    console.log("randomImageMath", newRandomMath)
     this.icon = this.allHandlers[newRandomMath]
     
 
@@ -66,7 +66,13 @@ export default {
     // TODO : Remove the Interval and Secondary toast fire
     sendToast: function() {
       console.log("thisicon",this.allHandlers)
+      if(this.body.length >= 44) {
+        console.log("ITS LONGBOI")
+      }
       this.$snotify.simple(this.body, this.titleDelimit+this.title, {
+        bodyMaxLength: 510,
+        maxOnScreen: 5,
+        maxAtPosition: 5,
         icon: this.icon,
       })     
     }
