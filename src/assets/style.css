@@ -323,6 +323,8 @@
     display: block;
     cursor: pointer;
     background-image: url('./images/image.png');
+    border: 1px solid rgba(0, 0, 0, 0.164);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     width: 100%;
     height: 100%;
     margin: 5px;
@@ -371,7 +373,7 @@
         top: 0;
         left: 0;
         height: 10px;
-        background-color: rgba(76, 76, 76, 0.137);
+        background: linear-gradient(to right, rgba(0,123,193,0.5), rgba(0,0,0,0.15));
         max-width: 100%; }
     .snotifyToast__title {
       font-size: 1.8em;
@@ -379,6 +381,7 @@
       margin-bottom: 5px;
       color: #fff; }
     .snotifyToast__body {
+      max-width: 75%;
       font-size: 1em; }
   
   .snotifyToast-show {
@@ -502,7 +505,7 @@
         outline: none; }
     .snotifyToast__input__label {
       display: inline-block;
-      float: right;
+      float: none;
       padding: 0 .85em;
       width: 100%;
       color: #e0f2f1;
