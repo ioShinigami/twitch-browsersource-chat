@@ -68,6 +68,7 @@ export default {
       console.log("thisicon",this.allHandlers)
       if(this.body.length >= 44) {
         console.log("ITS LONGBOI")
+        //this.body.length[43] = this.body + `\n`
       }
       this.$snotify.simple(this.body, this.titleDelimit+this.title, {
         bodyMaxLength: 510,
