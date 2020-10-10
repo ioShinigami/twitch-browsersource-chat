@@ -5,7 +5,7 @@
 </template>
 
 <style lang="stylus" src="./assets/style.styl"></style>
-<style  src="./assets/style.css"></style>
+
 <script>
 
 export default {
