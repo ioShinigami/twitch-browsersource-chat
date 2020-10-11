@@ -66,7 +66,6 @@ export default {
     var max = Math.floor(this.allHandlers.length)
     var min = Math.ceil(1)
     var newRandomMath = Math.floor(Math.random() * (max - min) + min);
-    console.log("randomImageMath", newRandomMath)
     this.icon = this.allHandlers[newRandomMath]
     
 
@@ -74,11 +73,6 @@ export default {
     // NOTE : This currently continues firing the current notification for testing
     // TODO : Remove the Interval and Secondary toast fire
     sendToast: function() {
-      console.log("thisicon",this.allHandlers)
-      if(this.body.length >= 44) {
-        console.log("ITS LONGBOI")
-        //this.body.length[43] = this.body + `\n`
-      }
       this.$snotify.simple(this.body, this.titleDelimit+this.title, {
         bodyMaxLength: 510,
         maxOnScreen: 5,
@@ -108,25 +102,11 @@ export default {
       this.emotes = `${tags["emotes-raw"]}`;
       this.badges =`${tags["badges"]}`
       this.profileImage = `${tags["user-id"]}`,
-      //client.say("message", "Testdata Kappa Testdata");
-      console.log("created -> this.profileImage", this.profileImage)
       this.body = `${message}`;
       this.combined = '[ "' + this.title.toUpperCase() + '" ]' + "  \n" + ">  " + this.body;
-      //var test = this.sendToEmoteSanitize(this.body, this.emotes)
-      //console.log("created -> test", test)  
-
       this.sendToast()
       this.findUserProfileImage()
       // TODO find a way to get twitch user img
-     
-     /* this.$toast(this.combined, {
-        timeout: this.timeout,
-        position: POSITION.BOTTOM_RIGHT,  
-        toastClassName: "my-custom-toast-class",
-        bodyClassName: ["custom-class-1", "custom-class-2"],
-        transition: "Vue-Toastification__fade",
-        maxToasts: 10
-      });*/
     });
   }
 };
