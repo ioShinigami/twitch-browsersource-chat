@@ -96,7 +96,9 @@ export default {
     client.connect();
 
     client.on("message", (channel, tags, message) => {
-     console.log(tags)
+    console.log("created -> tags", tags)
+    
+   
       this.source = `${tags["display-name"]} : \n ${message}`;
       this.title = `${tags["display-name"]}`;
       this.emotes = `${tags["emotes-raw"]}`;
