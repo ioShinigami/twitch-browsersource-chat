@@ -3,17 +3,16 @@ import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
 import Snotify, { SnotifyPosition } from "vue-snotify";
 
-
 const options = {
   toast: {
     position: SnotifyPosition.rightBottom,
-    type: 'simple',
+    type: "simple",
     timeout: 30000,
     showProgressBar: true,
     closeOnClick: false,
-    animation:{
-    enter: 'jackInTheBox',
-    exit: 'jackInTheBox',
+    animation: {
+      enter: "jackInTheBox",
+      exit: "jackInTheBox"
     },
     pauseOnHover: false
   }
