@@ -94,7 +94,7 @@ export default {
         reconnect: true
       },
 
-      channels: ["citrusf"]
+      channels: ["baldbeardedbuilder"]
     });
 
     client.connect();
