@@ -7,8 +7,11 @@
 <style lang="stylus" src="./assets/style.styl"></style>
 
 <script>
+const oAuth = require('./utils/auth');
 export default {
   data: () => ({
+    availableCommands : ['!twitter', '!socials'],
+
     allHandlers: [
       "https://cdn.betterttv.net/emote/583089f4737a8e61abb0186b/2x", // NOTE : OMEGALUL
       "https://cdn.betterttv.net/emote/56e9f494fff3cc5c35e5287e/2x", // NOTE : MONKAS
@@ -84,6 +87,7 @@ export default {
         });
       }
     }
+
   },
 
   created() {
@@ -93,15 +97,22 @@ export default {
         secure: true,
         reconnect: true
       },
+        identity: {
+      username: 'thisWAIFU-bot',
+      password: oAuth.oAuth
+    },
 
-      channels: ["baldbeardedbuilder"]
+      channels: ["thiswaifu"]
     });
 
     client.connect();
 
-    client.on("message", (channel, tags, message) => {
-      console.log("created -> tags", tags);
-      console.log("created -> tags", tags.mod);
+    client.on("message", (channel, tags, message, self) => {
+      if (self) return;
+      var isValidCommand = this.availableCommands.includes(message.toLowerCase())
+      if (isValidCommand) {
+        client.say(channel, `@${tags.username}`)
+      } else {
       if (tags.mod === true) {
         var mode = true;
         console.log("mode");
@@ -129,6 +140,7 @@ export default {
       }
 
       // TODO find a way to get twitch user img
+    }
     });
   }
 };
