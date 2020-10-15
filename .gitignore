@@ -22,3 +22,4 @@ pnpm-debug.log*
 *.sln
 *.sw?
 src/utils/auth.js
+src/utils/authHandler.js
