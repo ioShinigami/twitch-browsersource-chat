@@ -7,28 +7,27 @@
 <style lang="stylus" src="./assets/style.styl"></style>
 
 <script>
-const oAuth = require('./utils/authHandler');
-const imageHandler = require('./utils/imageHandler');
-const commandHandler = require('./utils/commandHandler')
-const responseHandler = require('./utils/responseHandler')
-
+const oAuth = require("./utils/authHandler");
+const imageHandler = require("./utils/imageHandler");
+const commandHandler = require("./utils/commandHandler");
+const responseHandler = require("./utils/responseHandler");
 export default {
   data: () => ({
-    availableCommands : commandHandler.commands,
+    availableCommands: commandHandler.commands,
     allHandlers: imageHandler.images,
-    source: "",
     timeout: 30000,
     urldata: "http://static-cdn.jtvnw.net/emoticons/v1/' + i + '/3.0",
     baseUrl: "https://api.twitch.tv/kraken/channels/",
     titleDelimit: "> ",
+    source: {},
     title: null,
     body: "",
     badges: "",
     emotes: "",
-    icon: null,
+    combined: "",
     profileImage: "",
+    icon: null,
     info: null,
-    combined: ""
   }),
   methods: {
     findUserProfileImage: function() {
@@ -57,7 +56,6 @@ export default {
         });
       }
     }
-
   },
   created() {
     const tmi = require("tmi.js");
@@ -66,10 +64,10 @@ export default {
         secure: true,
         reconnect: true
       },
-        identity: {
-      username: 'thisWAIFU',
-      password: oAuth.oAuth
-    },
+      identity: {
+        username: "thisWAIFU",
+        password: oAuth.oAuth
+      },
       channels: ["thiswaifu"]
     });
 
@@ -77,39 +75,56 @@ export default {
 
     client.on("message", (channel, tags, message, self) => {
       if (self) return;
-      var isValidCommand = this.availableCommands.includes(message.toLowerCase())
+      var isValidCommand = this.availableCommands.includes(
+        message.toLowerCase()
+      );
       if (isValidCommand) {
-       var index = this.availableCommands.indexOf(message.toLowerCase())        
-        client.say(channel, `@${tags.username} ` + responseHandler.responses[index])
+        var index = this.availableCommands.indexOf(message.toLowerCase());
+        client.say(
+          channel,
+          `@${tags.username} ` + responseHandler.responses[index]
+        );
       } else {
-      if (tags.mod === true) {
-        var mode = true;
-        console.log("mode");
-        this.source = `${tags["display-name"]} : \n ${message}`;
-        this.title = `${tags["display-name"]}`;
-        this.emotes = `${tags["emotes-raw"]}`;
-        this.badges = `${tags["badges"]}`;
-        (this.profileImage = `${tags["user-id"]}`), (this.body = `${message}`);
-        this.combined =
-          '[ "' + this.title.toUpperCase() + '" ]' + "  \n" + ">  " + this.body;
-        this.sendToast(mode);
-        this.findUserProfileImage();
-      } else {
-        console.log("not mode");
-        mode = false;
-        this.source = `${tags["display-name"]} : \n ${message}`;
-        this.title = `${tags["display-name"]}`;
-        this.emotes = `${tags["emotes-raw"]}`;
-        this.badges = `${tags["badges"]}`;
-        (this.profileImage = `${tags["user-id"]}`), (this.body = `${message}`);
-        this.combined =
-          '[ "' + this.title.toUpperCase() + '" ]' + "  \n" + ">  " + this.body;
-        this.sendToast(mode);
-        this.findUserProfileImage();
-      }
+        if (tags.mod === true) {
+          var mode = true;
+          console.log("mode");
+          this.source = `${tags["display-name"]} : \n ${message}`;
+          this.title = `${tags["display-name"]}`;
+          this.emotes = `${tags["emotes-raw"]}`;
+          this.badges = `${tags["badges"]}`;
+          (this.profileImage = `${tags["user-id"]}`),
+            (this.body = `${message}`);
+          this.combined =
+            '[ "' +
+            this.title.toUpperCase() +
+            '" ]' +
+            "  \n" +
+            ">  " +
+            this.body;
+          this.sendToast(mode);
+          this.findUserProfileImage();
+        } else {
+          console.log("not mode");
+          mode = false;
+          this.source = `${tags["display-name"]} : \n ${message}`;
+          this.title = `${tags["display-name"]}`;
+          this.emotes = `${tags["emotes-raw"]}`;
+          this.badges = `${tags["badges"]}`;
+          (this.profileImage = `${tags["user-id"]}`),
+            (this.body = `${message}`);
+          this.combined =
+            '[ "' +
+            this.title.toUpperCase() +
+            '" ]' +
+            "  \n" +
+            ">  " +
+            this.body;
+          this.sendToast(mode);
+          this.findUserProfileImage();
+        }
 
-      // TODO find a way to get twitch user img
-    }
+        // TODO find a way to get twitch user img
+      }
     });
   }
 };
