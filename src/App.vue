@@ -19,15 +19,15 @@ export default {
     urldata: "http://static-cdn.jtvnw.net/emoticons/v1/' + i + '/3.0",
     baseUrl: "https://api.twitch.tv/kraken/channels/",
     titleDelimit: "> ",
-    source: {},
-    title: null,
-    body: "",
-    badges: "",
-    emotes: "",
-    combined: "",
-    profileImage: "",
+    source: {
+      title: "",
+      body: "",
+      emotes: "",
+      badges: "",
+      profileImage: ""
+    },
     icon: null,
-    info: null,
+    info: null
   }),
   methods: {
     findUserProfileImage: function() {
@@ -40,7 +40,7 @@ export default {
     // TODO : Remove the Interval and Secondary toast fire
     sendToast: function(mode) {
       if (mode) {
-        this.$snotify.simple(this.body, this.titleDelimit + this.title, {
+        this.$snotify.simple(this.source.body, this.titleDelimit + this.source.title, {
           bodyMaxLength: 510,
           maxOnScreen: 5,
           maxAtPosition: 5,
@@ -48,7 +48,7 @@ export default {
             "https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/1"
         });
       } else {
-        this.$snotify.simple(this.body, this.titleDelimit + this.title, {
+        this.$snotify.simple(this.source.body, this.titleDelimit + this.source.title, {
           bodyMaxLength: 510,
           maxOnScreen: 5,
           maxAtPosition: 5,
@@ -88,37 +88,25 @@ export default {
         if (tags.mod === true) {
           var mode = true;
           console.log("mode");
-          this.source = `${tags["display-name"]} : \n ${message}`;
-          this.title = `${tags["display-name"]}`;
-          this.emotes = `${tags["emotes-raw"]}`;
-          this.badges = `${tags["badges"]}`;
-          (this.profileImage = `${tags["user-id"]}`),
-            (this.body = `${message}`);
-          this.combined =
-            '[ "' +
-            this.title.toUpperCase() +
-            '" ]' +
-            "  \n" +
-            ">  " +
-            this.body;
+          this.source = {
+            title: `${tags["display-name"]}`,
+            body: `${message}`,
+            emotes: `${tags["emotes-raw"]}`,
+            badges: `${tags["badges"]}`,
+            profileImage: `${tags["user-id"]}`
+          }
           this.sendToast(mode);
           this.findUserProfileImage();
         } else {
           console.log("not mode");
           mode = false;
-          this.source = `${tags["display-name"]} : \n ${message}`;
-          this.title = `${tags["display-name"]}`;
-          this.emotes = `${tags["emotes-raw"]}`;
-          this.badges = `${tags["badges"]}`;
-          (this.profileImage = `${tags["user-id"]}`),
-            (this.body = `${message}`);
-          this.combined =
-            '[ "' +
-            this.title.toUpperCase() +
-            '" ]' +
-            "  \n" +
-            ">  " +
-            this.body;
+          this.source = {
+            title: `${tags["display-name"]}`,
+            body: `${message}`,
+            emotes: `${tags["emotes-raw"]}`,
+            badges: `${tags["badges"]}`,
+            profileImage: `${tags["user-id"]}`
+          }
           this.sendToast(mode);
           this.findUserProfileImage();
         }
