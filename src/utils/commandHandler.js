@@ -1,3 +1,3 @@
 module.exports = { 
-    commands : ['!twitter', '!socials']
+    commands : ['!twitter', '!socials', '!instagram', '!discord', '!github', ]
 }
